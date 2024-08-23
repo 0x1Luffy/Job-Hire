@@ -3,6 +3,7 @@ import express from "express";
 import cors from 'cors';
 const app = express();
 import dotenv from "dotenv";
+import connectDB from "./utlis//db.js";
 dotenv.config({});
 
 app.get("/home",(req,res)=>{
@@ -28,5 +29,6 @@ app.use(cors(corsOptions));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, ()=>{
+    connectDB();
     console.log(`Server Running on port ${PORT}`);
 });
