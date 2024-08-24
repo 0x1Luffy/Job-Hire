@@ -69,7 +69,7 @@ export const login = async (req, res) => {
     }
 
     // Checking User Enters the Right Password
-    const isPasswordMatch = await bcrypt.compare(password.user.password);
+    const isPasswordMatch = await bcrypt.compare(password, user.password);
     if (!isPasswordMatch) {
       return res.status(400).json({
         message: "Incorrect email or Password",
