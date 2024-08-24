@@ -3,12 +3,11 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 // SignUp Controller
-
 export const register = async (req, res) => {
   try {
     const { fullname, email, phoneNumber, password, role } = req.body;
     if (!fullname || !email || !phoneNumber || !password || !role) {
-      res.status(400).json({
+      return res.status(400).json({
         message: "Something is Missing",
         success: false,
       });
@@ -18,22 +17,15 @@ export const register = async (req, res) => {
     const user = await User.findOne({ email });
     if (user) {
       return res.status(400).json({
-        message: "User Already Exits !",
+        message: "User Already Exists!",
         success: false,
       });
     }
 
-    //Hashing the password
+    // Hashing the password
     const hashedPassword = await bcrypt.hash(password, 10);
-    return res.status(201).json({
-      message: "Account Created Successfully",
-      success: true,
-    });
 
-    // Creating a User into DB
-    // Just like creating a new account
-    // Pushed into Database
-
+    // Creating a User in the DB
     await User.create({
       fullname,
       email,
@@ -41,8 +33,21 @@ export const register = async (req, res) => {
       password: hashedPassword,
       role,
     });
-  } catch (error) {}
+
+    // Returning a success response
+    return res.status(201).json({
+      message: "Account Created Successfully",
+      success: true,
+    });
+  } catch (error) {
+    // Handle any errors
+    return res.status(500).json({
+      message: "Server Error",
+      success: false,
+    });
+  }
 };
+
 
 // Login controller
 

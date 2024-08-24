@@ -7,14 +7,6 @@ import connectDB from "./utlis//db.js";
 import userRoute from "./routes/user.route.js";
 dotenv.config({});
 
-app.get("/home",(req,res)=>{
-    return res.status(200).json(
-        {
-            message:"Message from server"
-        }
-    )
-})
-
 // App Middlewares 
 
 app.use(express.json());
@@ -32,7 +24,7 @@ const PORT = process.env.PORT || 3000;
 
 
 //Default REST API
-app.use(".api/v1/user",userRoute);
+app.use("/api/v1/user",userRoute);
 
 app.listen(PORT, ()=>{
     connectDB();
