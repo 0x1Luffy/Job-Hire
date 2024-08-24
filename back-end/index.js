@@ -4,6 +4,7 @@ import cors from 'cors';
 const app = express();
 import dotenv from "dotenv";
 import connectDB from "./utlis//db.js";
+import userRoute from "./routes/user.route.js";
 dotenv.config({});
 
 app.get("/home",(req,res)=>{
@@ -28,6 +29,11 @@ app.use(cors(corsOptions));
 
 
 const PORT = process.env.PORT || 3000;
+
+
+//Default REST API
+app.use(".api/v1/user",userRoute);
+
 app.listen(PORT, ()=>{
     connectDB();
     console.log(`Server Running on port ${PORT}`);
