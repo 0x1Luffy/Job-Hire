@@ -27,7 +27,7 @@ const Navbar = () => {
               <Link to="/login">
                 <Button variant="outline">Login</Button>
               </Link>
-              <Link to="signup">
+              <Link to="/signup">
                 <Button className="bg-[#6A38C2] hover:bg-[#6007f8]">
                   Sign Up
                 </Button>
