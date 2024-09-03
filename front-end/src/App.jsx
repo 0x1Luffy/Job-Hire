@@ -1,4 +1,5 @@
 import './App.css';
+import Browse from './components/Browse';
 import Home from './components/Home';
 import Jobs from './components/Jobs';
 import Login from './components/auth/Login';
@@ -21,6 +22,10 @@ const appRouter = createBrowserRouter([
   {
     path:'/jobs',
     element:<Jobs/>
+  },
+  {
+    path:'/browse',
+    element:<Browse/>
   },
 
 ])
